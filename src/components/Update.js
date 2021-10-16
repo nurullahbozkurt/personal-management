@@ -21,7 +21,7 @@ export default function Update() {
 
   useEffect(() => {
     const getPerson = async () => {
-      const response = await axios.get("http://localhost:3000/personal/" + id);
+      const response = await axios.get("http://localhost:3000/personals/" + id);
       setState({
         name: response.data.name,
         department: response.data.department,
@@ -42,7 +42,7 @@ export default function Update() {
 
   const updateBtn = async (e) => {
     e.preventDefault();
-    await fetch("http://localhost:3000/personal/" + id, {
+    await fetch(`${process.env.REACT_APP_API_URL}/personals/${id}`, {
       method: "PUT", // or 'PUT'
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

@@ -32,21 +32,6 @@ export default function Form() {
     alertify.success("Personal Added..", 2);
   };
 
-  const imdb = (e) => {
-    var requestOptions = {
-      method: "GET",
-      redirect: "follow",
-    };
-
-    fetch(
-      "https://imdb-api.com/API/IMDbList/k_gwphfuyl/ls095521504",
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
-  };
-
   return (
     <div>
       <form id="employee-form" name="form" onSubmit={personals}>
@@ -88,9 +73,6 @@ export default function Form() {
           </button>
         </div>
       </form>
-      <button className="btn btn-success" onClick={imdb}>
-        imdb
-      </button>
     </div>
   );
 }

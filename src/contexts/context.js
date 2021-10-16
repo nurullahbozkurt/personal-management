@@ -27,7 +27,9 @@ export default function PersonalProvider(props) {
   }, []);
 
   const jsonPlayersGet = async () => {
-    const response = await axios.get("http://localhost:3000/personal");
+    const response = await axios.get(
+      `${process.env.REACT_APP_API_URL}/personals`
+    );
     setPersonal(response.data);
   };
 
@@ -37,7 +39,7 @@ export default function PersonalProvider(props) {
 
   const addNewPersonal = async (personal) => {
     const id = Math.floor(Math.random() * 101);
-    await fetch("http://localhost:3000/personal", {
+    await fetch(`${process.env.REACT_APP_API_URL}/personals`, {
       method: "POST", // or 'PUT'
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -59,7 +61,7 @@ export default function PersonalProvider(props) {
   };
 
   const delPersonal = async (person) => {
-    await fetch("http://localhost:3000/personal/" + person.id, {
+    await fetch(`${process.env.REACT_APP_API_URL}/personals/${person.id}`, {
       method: "DELETE",
     });
     setPersonal(personals.filter((p) => p.id !== person.id));
@@ -68,7 +70,7 @@ export default function PersonalProvider(props) {
 
   const allDelete = async (e) => {
     await personals.forEach((p) => {
-      fetch("http://localhost:3000/personal/" + p.id, {
+      fetch(`${process.env.REACT_APP_API_URL}/personals/${p.id}`, {
         method: "DELETE",
       });
     });
